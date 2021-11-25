@@ -3,7 +3,6 @@ from curses import wrapper
 
 # 建立開始畫面
 def start_screen(stdscr):
-
     # 清空畫面
     stdscr.clear()
 
@@ -23,13 +22,29 @@ def start_screen(stdscr):
 
 # 建立打字畫面
 def wpm_test(stdscr):
+    # 建立打字測試字符串
     target_text = "Hello, this is some test text for this app. Please typing as soon as possible."
+
+    # 創建一個收集正確字符的 list
     current_text = []
 
-    stdscr.clear()
-    stdscr.addstr(target_text)
-    stdscr.refresh()
-    stdscr.getkey()
+    while True:
+        # 進入打字畫面後馬上清空畫面
+        stdscr.clear()
+
+        # 顯示字符串
+        stdscr.addstr(target_text)
+
+        # 逐一顯示用戶所輸入的字符
+        for character in current_text:
+            stdscr.addstr(character, curses.color_pair(1))
+        
+        stdscr.refresh()
+
+        # 收集用戶輸入的字符，並放入 current_text 中
+        key = stdscr.getkey()
+
+        current_text.append(key)
 
 # stdscr: standard output screen
 def main(stdscr):
