@@ -44,6 +44,9 @@ def wpm_test(stdscr):
         # 收集用戶輸入的字符，並放入 current_text 中
         key = stdscr.getkey()
 
+        if ord(key) == 27:
+            break
+
         current_text.append(key)
 
 # stdscr: standard output screen
