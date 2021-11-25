@@ -20,6 +20,10 @@ def start_screen(stdscr):
     # 用戶輸入任意馬後結束程式
     stdscr.getkey()
 
+# 建立文字覆蓋效果
+def display_text():
+    pass
+
 # 建立打字畫面
 def wpm_test(stdscr):
     # 建立打字測試字符串
