@@ -44,10 +44,18 @@ def wpm_test(stdscr):
         # 收集用戶輸入的字符，並放入 current_text 中
         key = stdscr.getkey()
 
+        # 按下鍵盤 esc鍵 或 左鍵後退出遊戲 
         if ord(key) == 27:
             break
 
-        current_text.append(key)
+        # 按下 back delete 時會產生刪除效果
+        if key in ("KEY_BACKSPACE", "\b", "\x7f"):
+            # 刪除的同時把被刪除字元一同從 current_text list 裡面剔除
+            if len(current_text) > 0:
+                current_text.pop()
+        else:
+            # 用戶每輸入字元都會將字元放入 current_text list
+            current_text.append(key)
 
 # stdscr: standard output screen
 def main(stdscr):
