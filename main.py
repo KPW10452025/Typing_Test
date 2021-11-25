@@ -21,6 +21,16 @@ def start_screen(stdscr):
     # 用戶輸入任意馬後結束程式
     stdscr.getkey()
 
+# 建立打字畫面
+def wpm_test(stdscr):
+    target_text = "Hello, this is some test text for this app. Please typing as soon as possible."
+    current_text = []
+
+    stdscr.clear()
+    stdscr.addstr(target_text)
+    stdscr.refresh()
+    stdscr.getkey()
+
 # stdscr: standard output screen
 def main(stdscr):
 
@@ -31,5 +41,6 @@ def main(stdscr):
     curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
 
     start_screen(stdscr)
+    wpm_test(stdscr)
 
 wrapper(main)
