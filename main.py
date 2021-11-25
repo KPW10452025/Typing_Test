@@ -21,8 +21,13 @@ def start_screen(stdscr):
     stdscr.getkey()
 
 # 建立文字覆蓋效果
-def display_text():
-    pass
+def display_text(stdscr, target, current, wpm=0):
+    # 顯示字符串
+    stdscr.addstr(target_text)
+
+    # 逐一顯示用戶所輸入的字符
+    for character in current_text:
+        stdscr.addstr(character, curses.color_pair(1))
 
 # 建立打字畫面
 def wpm_test(stdscr):
@@ -35,13 +40,6 @@ def wpm_test(stdscr):
     while True:
         # 進入打字畫面後馬上清空畫面
         stdscr.clear()
-
-        # 顯示字符串
-        stdscr.addstr(target_text)
-
-        # 逐一顯示用戶所輸入的字符
-        for character in current_text:
-            stdscr.addstr(character, curses.color_pair(1))
         
         stdscr.refresh()
 
