@@ -26,8 +26,9 @@ def display_text(stdscr, target, current, wpm=0):
     stdscr.addstr(target_text)
 
     # 逐一顯示用戶所輸入的字符
-    for character in current_text:
-        stdscr.addstr(character, curses.color_pair(1))
+    # 運用 enumerate 效果將每個字符剛好配合其位置
+    for i, character in enumerate(current_text):
+        stdscr.addstr(0, i, character, curses.color_pair(1))
 
 # 建立打字畫面
 def wpm_test(stdscr):
