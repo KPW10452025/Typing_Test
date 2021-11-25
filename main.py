@@ -23,11 +23,11 @@ def start_screen(stdscr):
 # 建立文字覆蓋效果
 def display_text(stdscr, target, current, wpm=0):
     # 顯示字符串
-    stdscr.addstr(target_text)
+    stdscr.addstr(target)
 
     # 逐一顯示用戶所輸入的字符
-    # 運用 enumerate 效果將每個字符剛好配合其位置
-    for i, character in enumerate(current_text):
+    # 運用 enumerate 將每個字符剛好配合 addstr 的 i 位置，產生文字覆蓋效果
+    for i, character in enumerate(current):
         stdscr.addstr(0, i, character, curses.color_pair(1))
 
 # 建立打字畫面
@@ -42,6 +42,9 @@ def wpm_test(stdscr):
         # 進入打字畫面後馬上清空畫面
         stdscr.clear()
         
+        # 將文字覆蓋效果放入
+        display_text(stdscr, target_text, current_text)
+
         stdscr.refresh()
 
         # 收集用戶輸入的字符，並放入 current_text 中
