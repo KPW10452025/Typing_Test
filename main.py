@@ -79,12 +79,14 @@ def wpm_test(stdscr):
 
         stdscr.refresh()
 
+        # try 當用戶有輸入字符時 key = stdscr.getkey() 屏且繼續後續程式碼 if ord(key) == 27:...等
         try:
             # 收集用戶輸入的字符，並放入 current_text 中
             key = stdscr.getkey()
+        # 若用戶沒有輸入字符，時間依舊繼續 stdscr.nodelay(True) 但會 continue 跳過後續的程式碼
         except:
             continue
-        
+
         # 按下鍵盤 esc鍵 或 左鍵後退出遊戲 
         if ord(key) == 27:
             break
