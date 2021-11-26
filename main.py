@@ -65,6 +65,9 @@ def wpm_test(stdscr):
         # 運用此特性就能在時間線上做兩個標記
         # 第一個標記為開始打字時間 start_time 第二個標記為當前時間 time.time()
 
+        # 建立打字測速公式（簡單建立，並非精準，因為重點不在於建立嚴謹的數學公式）
+        wpm = round((len(current_text)) / (time_elapsed / 60) / 5)
+
         # 進入打字畫面後馬上清空畫面
         stdscr.clear()
         
