@@ -60,12 +60,14 @@ def wpm_test(stdscr):
 
     while True:
         # 經過時間 time_elapsed = 當前時間 - 打字時間點 start_time
+        # 用 max 取大小的原因是當 time_elapsed == 0 時 wpm 的公式會出現除以零的現象導致系統錯誤
         time_elapsed = max(time.time() - start_time, 1)
         # 因為 time.time() 只會顯示當前時間，它會一直做改變。
         # 運用此特性就能在時間線上做兩個標記
         # 第一個標記為開始打字時間 start_time 第二個標記為當前時間 time.time()
 
         # 建立打字測速公式（簡單建立，並非精準，因為重點不在於建立嚴謹的數學公式）
+        # 用 round 讓數字保持整數
         wpm = round((len(current_text)) / (time_elapsed / 60) / 5)
 
         # 進入打字畫面後馬上清空畫面
