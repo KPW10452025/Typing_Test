@@ -57,6 +57,7 @@ def wpm_test(stdscr):
 
     # 建立開始打字時間點 start_time
     start_time = time.time()
+    stdscr.nodelay(True)
 
     while True:
         # 經過時間 time_elapsed = 當前時間 - 打字時間點 start_time
@@ -78,9 +79,12 @@ def wpm_test(stdscr):
 
         stdscr.refresh()
 
-        # 收集用戶輸入的字符，並放入 current_text 中
-        key = stdscr.getkey()
-
+        try:
+            # 收集用戶輸入的字符，並放入 current_text 中
+            key = stdscr.getkey()
+        except:
+            continue
+        
         # 按下鍵盤 esc鍵 或 左鍵後退出遊戲 
         if ord(key) == 27:
             break
