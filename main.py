@@ -120,7 +120,21 @@ def main(stdscr):
     curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
     curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
 
+    # 開始畫面
     start_screen(stdscr)
-    wpm_test(stdscr)
+
+    while True:
+        # 遊戲畫面
+        wpm_test(stdscr)
+
+        # 若達成遊戲條件則出現以下內容
+        stdscr.addstr(3, 0, "Congratulation! You complete the text! Press any key to continue...")
+        stdscr.addstr(4, 0, "Press any key to continue...")
+        stdscr.addstr(5, 0, "Press esc to quit.")
+        key = stdscr.getkey()
+
+        # 若用戶輸入esc鍵、左鍵
+        if ord(key) == 27:
+            break
 
 wrapper(main)
