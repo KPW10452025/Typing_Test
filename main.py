@@ -28,6 +28,10 @@ def display_text(stdscr, target, current, wpm=0):
     # 逐一顯示用戶所輸入的字符
     # 運用 enumerate 將每個字符剛好配合 addstr 的 i 位置，產生文字覆蓋效果
     for i, character in enumerate(current):
+        
+        #建立逐字正確答案字符
+        correct_charater = target[i]
+
         stdscr.addstr(0, i, character, curses.color_pair(1))
 
 # 建立打字畫面
@@ -35,7 +39,7 @@ def wpm_test(stdscr):
     # 建立打字測試字符串
     target_text = "Hello, this is some test text for this app. Please typing as soon as possible."
 
-    # 創建一個收集正確字符的 list
+    # 創建一個收集字符的 list
     current_text = []
 
     while True:
