@@ -1,6 +1,7 @@
 import curses
 from curses import wrapper
 import time # 因為 wpm 計算速度需要有時間因子，故載入 time
+import random
 
 # 建立開始畫面
 def start_screen(stdscr):
@@ -27,8 +28,9 @@ def display_text(stdscr, target, current, wpm=0):
     stdscr.addstr(target)
 
     # 在頁面中顯示 wpm 計速表
-    # 位置放在第二行第一位元，所以是 (1, 0, ...)
-    stdscr.addstr(1, 0, f'WPM: {wpm}')
+    # 位置放在第三行第一位元，所以是 (2, 0, ...)
+    stdscr.addstr(2, 0, f'WPM: {wpm}')
+    stdscr.addstr(3, 0, "Press esc to quit.")
 
     # 逐一顯示用戶所輸入的字符
     # 運用 enumerate 將每個字符剛好配合 addstr 的 i 位置，產生文字覆蓋效果
@@ -44,10 +46,16 @@ def display_text(stdscr, target, current, wpm=0):
 
         stdscr.addstr(0, i, character, color)
 
+# 讓程式能擷取自定義的 .txt 文字檔案
+def load_text():
+    with open("text.txt", mode="r", encoding="utf-8") as f:
+        lines = f.readlines()
+        return random.choice(lines).strip()
+
 # 建立打字畫面
 def wpm_test(stdscr):
     # 建立打字測試字符串
-    target_text = "Hello, this is some test text for this app. Please typing as soon as possible."
+    target_text = load_text()
 
     # 創建一個收集字符的 list
     current_text = []
@@ -128,9 +136,8 @@ def main(stdscr):
         wpm_test(stdscr)
 
         # 若達成遊戲條件則出現以下內容
-        stdscr.addstr(3, 0, "Congratulation! You complete the text! Press any key to continue...")
-        stdscr.addstr(4, 0, "Press any key to continue...")
-        stdscr.addstr(5, 0, "Press esc to quit.")
+        stdscr.addstr(4, 0, "Congratulation! You complete the text! Press any key to continue...")
+        stdscr.addstr(5, 0, "Press any key to continue...")
         key = stdscr.getkey()
 
         # 若用戶輸入esc鍵、左鍵
