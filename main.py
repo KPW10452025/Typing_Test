@@ -25,6 +25,10 @@ def display_text(stdscr, target, current, wpm=0):
     # 顯示字符串
     stdscr.addstr(target)
 
+    # 在頁面中顯示 wpm 計速表
+    # 位置放在第二行第一位元，所以是 (1, 0, ...)
+    stdscr.addstr(1, 0, f'WPM: {wpm}')
+
     # 逐一顯示用戶所輸入的字符
     # 運用 enumerate 將每個字符剛好配合 addstr 的 i 位置，產生文字覆蓋效果
     for i, character in enumerate(current):
