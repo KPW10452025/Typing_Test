@@ -1,5 +1,6 @@
 import curses
 from curses import wrapper
+import time # 因為 wpm 計算速度需要有時間因子，故載入 time
 
 # 建立開始畫面
 def start_screen(stdscr):
@@ -54,7 +55,16 @@ def wpm_test(stdscr):
     # 建立 wpm 測速效果
     wpm = 0 
 
+    # 建立開始打字時間點 start_time
+    start_time = time.time()
+
     while True:
+        # 經過時間 time_elapsed = 當前時間 - 打字時間點 start_time
+        time_elapsed = max(time.time() - start_time, 1)
+        # 因為 time.time() 只會顯示當前時間，它會一直做改變。
+        # 運用此特性就能在時間線上做兩個標記
+        # 第一個標記為開始打字時間 start_time 第二個標記為當前時間 time.time()
+
         # 進入打字畫面後馬上清空畫面
         stdscr.clear()
         
