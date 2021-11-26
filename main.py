@@ -31,8 +31,13 @@ def display_text(stdscr, target, current, wpm=0):
         
         #建立逐字正確答案字符
         correct_charater = target[i]
+        # 只要正確時，顯示綠色(常駐)
+        color = curses.color_pair(1)
+        # 若輸入的文字不正確，顯示紅色
+        if character != correct_charater:
+            color = curses.color_pair(2)
 
-        stdscr.addstr(0, i, character, curses.color_pair(1))
+        stdscr.addstr(0, i, character, color)
 
 # 建立打字畫面
 def wpm_test(stdscr):
