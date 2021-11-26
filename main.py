@@ -68,7 +68,8 @@ def wpm_test(stdscr):
             # 刪除的同時把被刪除字元一同從 current_text list 裡面剔除
             if len(current_text) > 0:
                 current_text.pop()
-        else:
+        # 若當前字符長度 len(current_text) 小於打字測試字符長度 len(target_text)
+        elif len(current_text) < len(target_text):
             # 用戶每輸入字元都會將字元放入 current_text list
             current_text.append(key)
 
