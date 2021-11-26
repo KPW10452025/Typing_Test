@@ -79,11 +79,21 @@ def wpm_test(stdscr):
 
         stdscr.refresh()
 
+        # 運用 "".join() 效果為產生一個字符串
+        # 因為 current_text 會逐字輸入，所以 "".join(current_text) 中的 "" 也會逐漸變多
+        # 當 "".join(current_text) 完全等於 target_text 時，產生結束遊戲效果：
+        if "".join(current_text) == target_text:
+            # 停止計時
+            stdscr.nodelay(False)
+            # 跳出回圈 while True:
+            # 跳出 while True: 意味著結束 wpm_test()，城市就會
+            break
+
         # try 當用戶有輸入字符時 key = stdscr.getkey() 屏且繼續後續程式碼 if ord(key) == 27:...等
         try:
             # 收集用戶輸入的字符，並放入 current_text 中
             key = stdscr.getkey()
-        # 若用戶沒有輸入字符，時間依舊繼續 stdscr.nodelay(True) 但會 continue 跳過後續的程式碼
+        # 若用戶沒有輸入字符，時間依舊繼續 stdscr.nodelay(True) 但會 continue 跳過後續的程式碼，返回 while True: 進入下一個回圈
         except:
             continue
 
