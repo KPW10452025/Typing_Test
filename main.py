@@ -47,12 +47,15 @@ def wpm_test(stdscr):
     # 創建一個收集字符的 list
     current_text = []
 
+    # 建立 wpm 測速效果
+    wpm = 0 
+
     while True:
         # 進入打字畫面後馬上清空畫面
         stdscr.clear()
         
         # 將文字覆蓋效果放入
-        display_text(stdscr, target_text, current_text)
+        display_text(stdscr, target_text, current_text, wpm)
 
         stdscr.refresh()
 
